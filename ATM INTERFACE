@@ -1,3 +1,5 @@
+package ATM;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,7 +30,7 @@ class Transaction {
     }
 
     public String toString() {
-        return type + ": Rs" + amount;
+        return type + ": Rs." + amount;
     }
 }
 
@@ -46,7 +48,7 @@ class ATM {
     // Method to validate user credentials
     public boolean login(String userId, String pin) {
         // Assuming user id and pin are hardcoded for simplicity
-        User user = new User("user123", "1234");
+        User user = new User("satadipta", "8100");
         if (user.validate(userId, pin)) {
             currentUser = user;
             return true;
@@ -71,8 +73,8 @@ class ATM {
         if (amount <= balance) {
             balance -= amount;
             transactionHistory.add(new Transaction("Withdraw", amount));
-            System.out.println("Withdrawn Rs" + amount + " successfully.");
-            System.out.println("Remaining balance: Rs" + balance);
+            System.out.println("Withdrawn Rs." + amount + " successfully.");
+            System.out.println("Remaining balance: Rs." + balance);
         } else {
             System.out.println("Insufficient funds!");
         }
@@ -82,15 +84,15 @@ class ATM {
     public void deposit(double amount) {
         balance += amount;
         transactionHistory.add(new Transaction("Deposit", amount));
-        System.out.println("Deposited Rs" + amount + " successfully.");
-        System.out.println("Updated balance: Rs" + balance);
+        System.out.println("Deposited Rs." + amount + " successfully.");
+        System.out.println("Updated balance: Rs." + balance);
     }
 
     // Method to transfer money
     public void transfer(double amount, String recipientId) {
-        // Dummy method, can be implemented further
+        
         transactionHistory.add(new Transaction("Transfer to " + recipientId, amount));
-        System.out.println("Transferred Rs" + amount + " to " + recipientId + " successfully.");
+        System.out.println("Transferred Rs." + amount + " to " + recipientId + " successfully.");
     }
 
     // Method to exit ATM
@@ -104,7 +106,7 @@ class ATM {
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ATM atm = new ATM(1000.0); // Initial balance $1000
+        ATM atm = new ATM(1000.0); // Initial balance Rs.1000
 
         System.out.println("Welcome to the ATM!");
 
@@ -137,17 +139,17 @@ public class Main {
                     atm.displayTransactionHistory();
                     break;
                 case 2:
-                    System.out.print("Enter amount to withdraw: $");
+                    System.out.print("Enter amount to withdraw: Rs.");
                     double withdrawAmount = scanner.nextDouble();
                     atm.withdraw(withdrawAmount);
                     break;
                 case 3:
-                    System.out.print("Enter amount to deposit: $");
+                    System.out.print("Enter amount to deposit: Rs.");
                     double depositAmount = scanner.nextDouble();
                     atm.deposit(depositAmount);
                     break;
                 case 4:
-                    System.out.print("Enter amount to transfer: $");
+                    System.out.print("Enter amount to transfer: Rs.");
                     double transferAmount = scanner.nextDouble();
                     System.out.print("Enter recipient's User ID: ");
                     String recipientId = scanner.next();
@@ -162,3 +164,4 @@ public class Main {
         }
     }
 }
+
